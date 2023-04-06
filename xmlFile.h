@@ -11,6 +11,7 @@ class xmlFile {
 protected:
     const string FILENAME;
     CMarkup xml;
+    int theBiggestId;
 
 public:
     xmlFile(string FileName) : FILENAME(FileName) {
@@ -19,6 +20,8 @@ public:
             xml.AddElem("Data");
         }
     };
+    int getTheBiggestId();
+    void setTheBiggestId(int newTheBiggestId);
 };
 
 #endif

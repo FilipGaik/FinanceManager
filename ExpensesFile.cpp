@@ -13,6 +13,7 @@ vector<Money> ExpensesFile::loadExpenses(int idOfLoggedUser) {
         xml.IntoElem();
         xml.FindElem("Id");
         expense.setId(stoi(xml.GetData()));
+        theBiggestId = expense.getId();
         xml.FindElem("UserId");
         expense.setUserId(stoi(xml.GetData()));
         xml.FindElem("Date");

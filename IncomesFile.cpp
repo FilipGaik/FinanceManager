@@ -8,11 +8,13 @@ vector<Money> IncomesFile::loadIncomes(int idOfLoggedUser) {
     vector<Money> incomes;
     xml.FindElem();
     xml.IntoElem();
+
     while (xml.FindElem("Income")) {
         Money income;
         xml.IntoElem();
         xml.FindElem("Id");
         income.setId(stoi(xml.GetData()));
+        theBiggestId = income.getId();
         xml.FindElem("UserId");
         income.setUserId(stoi(xml.GetData()));
         xml.FindElem("Date");
@@ -26,6 +28,7 @@ vector<Money> IncomesFile::loadIncomes(int idOfLoggedUser) {
             incomes.push_back(income);
         }
     }
+
     return incomes;
 }
 

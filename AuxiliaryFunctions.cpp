@@ -8,11 +8,13 @@ string AuxiliaryFunctions::readLine() {
 }
 
 bool AuxiliaryFunctions::isNumber(string line) {
+
     for (int i = 0; i < (int) line.size(); i++) {
-        if (!isdigit(line[i])) {
+        if (!isdigit(line[i]) && line[i] != '.') {
             return false;
         }
     }
+
     return true;
 }
 
@@ -41,7 +43,15 @@ bool AuxiliaryFunctions::isALeapYear(string year) {
 }
 
 bool AuxiliaryFunctions::checkDate(string userDate) {
+    string currentDate = getTodaysDate();
+    int currentYear = stoi(currentDate.substr(0, 4));
+    int currentMonth = stoi(currentDate.substr(5, 2));
+    int currentDay = stoi(currentDate.substr(8));
     if ((int) userDate.size() != 10 || userDate[4] != '-' || userDate[7] != '-') {
+        return false;
+    }
+    int year = stoi(userDate.substr(0, 4));
+    if (year < 2000 || year > currentYear) {
         return false;
     }
     int month = stoi(userDate.substr(5, 2));
@@ -54,6 +64,12 @@ bool AuxiliaryFunctions::checkDate(string userDate) {
     } else if (month == 2 && isALeapYear(userDate.substr(0, 4)) && day > 29) {
         return false;
     } else if (month == 2 && !isALeapYear(userDate.substr(0, 4)) && day > 28) {
+        return false;
+    }
+    if (year == currentYear && month > currentMonth) {
+        return false;
+    }
+    if (year == currentYear && month == currentMonth && day > currentDay) {
         return false;
     }
     return true;

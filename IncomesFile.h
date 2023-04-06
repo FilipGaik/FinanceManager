@@ -14,8 +14,9 @@ using namespace std;
 
 class IncomesFile : public xmlFile{
 public:
-    IncomesFile(string incomesFileName)
-    : xmlFile(incomesFileName) {};
+    IncomesFile(string incomesFileName) : xmlFile(incomesFileName) {
+        theBiggestId = 0;
+    };
     vector<Money> loadIncomes(int idOfLoggedUser);
     string getIncomesFileName();
     void addIncome(Money newIncome);
